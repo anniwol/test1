@@ -7,6 +7,20 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const RIOT_API_KEY = process.env.RIOT_API_KEY;
 
+// 서버 시작 시 키 확인 로그 추가
+if (!RIOT_API_KEY || RIOT_API_KEY === 'your_riot_api_key_here' || RIOT_API_KEY === '') {
+    console.log('--------------------------------------------------');
+    console.error('❌ 경고: 라이엇 API 키가 감지되지 않았습니다!');
+    console.log('1. .env 파일이 있는지 확인하세요.');
+    console.log('2. RIOT_API_KEY=RGAPI-xxxx... 형식인지 확인하세요.');
+    console.log('--------------------------------------------------');
+} else {
+    console.log('--------------------------------------------------');
+    console.log('✅ 라이엇 API 키 로드 완료!');
+    console.log('서버가 정상적으로 라이엇 데이터를 가져올 준비가 되었습니다.');
+    console.log('--------------------------------------------------');
+}
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
