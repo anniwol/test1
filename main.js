@@ -2,6 +2,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const ballContainer = document.getElementById('ball-container');
     const generateBtn = document.getElementById('generate-btn');
     const resetBtn = document.getElementById('reset-btn');
+    const themeBtn = document.getElementById('theme-btn');
+
+    /**
+     * 테마 설정 함수
+     */
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        themeBtn.textContent = theme === 'dark' ? '🌙' : '☀️';
+    }
+
+    // 초기 테마 로드
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+
+    // 테마 토글 이벤트
+    themeBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+    });
 
     /**
      * 로또 번호 생성 (1~45 중 6개 랜덤 중복 없이)
