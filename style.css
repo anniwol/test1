@@ -1,1 +1,147 @@
-/* Add styles here */
+:root {
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --primary-color: #4a90e2;
+    --secondary-color: #e74c3c;
+    --ball-shadow: rgba(0, 0, 0, 0.2);
+    
+    /* Lotto Ball Colors */
+    --color-1-10: #fbc400;
+    --color-11-20: #69c8f2;
+    --color-21-30: #ff7272;
+    --color-31-40: #aaaaaa;
+    --color-41-45: #b0d840;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-color);
+}
+
+.container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+h1 {
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    color: #2c3e50;
+}
+
+.description {
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+}
+
+.ball-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    min-height: 80px;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+.placeholder {
+    color: #bdc3c7;
+    font-style: italic;
+}
+
+.ball {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: inset -4px -4px 8px rgba(0, 0, 0, 0.2), 
+                4px 4px 10px var(--ball-shadow);
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    opacity: 0;
+    transform: scale(0);
+}
+
+@keyframes popIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Ball Range Colors */
+.ball.range-1 { background: radial-gradient(circle at 30% 30%, #ffd95c, var(--color-1-10)); }
+.ball.range-2 { background: radial-gradient(circle at 30% 30%, #9be2ff, var(--color-11-20)); }
+.ball.range-3 { background: radial-gradient(circle at 30% 30%, #ff9e9e, var(--color-21-30)); }
+.ball.range-4 { background: radial-gradient(circle at 30% 30%, #cccccc, var(--color-31-40)); }
+.ball.range-5 { background: radial-gradient(circle at 30% 30%, #cdec7d, var(--color-41-45)); }
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn.primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn.primary:hover {
+    background-color: #357abd;
+}
+
+.btn.secondary {
+    background-color: #ecf0f1;
+    color: #7f8c8d;
+}
+
+.btn.secondary:hover {
+    background-color: #dfe6e9;
+}
+
+@media (max-width: 400px) {
+    .ball {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    .container {
+        padding: 1.5rem;
+    }
+}

@@ -1,14 +1,26 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또 번호 추천</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <div class="container">
+        <h1>로또 번호 추천기</h1>
+        <p class="description">행운의 번호를 생성해 보세요!</p>
+        
+        <div id="ball-container" class="ball-container">
+            <!-- 번호 공이 여기에 생성됩니다 -->
+            <div class="placeholder">생성 버튼을 눌러주세요</div>
+        </div>
+
+        <div class="button-group">
+            <button id="generate-btn" class="btn primary">번호 생성</button>
+            <button id="reset-btn" class="btn secondary">초기화</button>
+        </div>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
