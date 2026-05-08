@@ -1,0 +1,143 @@
+:root {
+    --bg-color: #f0f2f5;
+    --container-bg: #ffffff;
+    --text-color: #333;
+    --primary-color: #5383e8;
+    --secondary-bg: #f5f7fa;
+    --border-color: #ddd;
+    --win-color: #eaf2ff;
+    --loss-color: #fff0f0;
+    --win-border: #a3c7ff;
+    --loss-border: #ffb0b0;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1b1e;
+    --container-bg: #2a2b2e;
+    --text-color: #f0f0f0;
+    --primary-color: #729ef5;
+    --secondary-bg: #3a3b3e;
+    --border-color: #444;
+    --win-color: #1c2b45;
+    --loss-color: #3d1c1c;
+    --win-border: #2a4a7a;
+    --loss-border: #7a2a2a;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    transition: background 0.3s;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#theme-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.search-section {
+    margin-bottom: 40px;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    background: var(--container-bg);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.search-box input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--secondary-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.search-box button {
+    padding: 0 25px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.match-card {
+    background: var(--container-bg);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-left: 6px solid var(--border-color);
+}
+
+.match-card.win {
+    background: var(--win-color);
+    border-left-color: #5383e8;
+}
+
+.match-card.loss {
+    background: var(--loss-color);
+    border-left-color: #e84057;
+}
+
+.champion-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.match-info {
+    flex: 1;
+}
+
+.result-text {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.kda {
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.placeholder {
+    text-align: center;
+    padding: 100px 0;
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+}
