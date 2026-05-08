@@ -3,27 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARAM Mayhem 전적 검색</title>
+    <title>TFT 세트 17 덱 추천기</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body data-theme="light">
-    <div class="container">
+<body class="cosmic-theme">
+    <div class="app-container">
         <header>
-            <h1>칼바람: 아수라장 전적</h1>
-            <button id="theme-btn">☀️</button>
+            <h1>TFT 세트 17: 우주 신</h1>
+            <p>기물을 선택하여 교집합 덱과 실시간 시너지를 확인하세요</p>
         </header>
 
-        <section class="search-section">
-            <div class="search-box">
-                <input type="text" id="riot-id" placeholder="닉네임 #KR1">
-                <button id="search-btn">검색</button>
-            </div>
-        </section>
+        <div class="main-layout">
+            <!-- 기물 선택 영역 -->
+            <aside class="sidebar">
+                <section class="selection-status">
+                    <h2>선택된 기물 (<span id="selected-count">0</span>/12)</h2>
+                    <div id="selected-units" class="selected-grid">
+                        <!-- 선택된 기물들이 여기에 표시됨 -->
+                    </div>
+                </section>
 
-        <main id="result-container">
-            <div class="placeholder">Riot ID를 입력하여 전적을 조회하세요.</div>
-        </main>
+                <section class="synergy-tracker">
+                    <h2>활성 시너지</h2>
+                    <div id="active-synergies" class="synergy-list">
+                        <p class="empty-msg">기물을 추가하면 시너지가 표시됩니다.</p>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- 챔피언 목록 및 결과 -->
+            <main class="content">
+                <section class="champion-picker">
+                    <div class="filter-bar">
+                        <button class="filter-btn active" data-cost="all">전체</button>
+                        <button class="filter-btn" data-cost="1">1코스트</button>
+                        <button class="filter-btn" data-cost="2">2코스트</button>
+                        <button class="filter-btn" data-cost="3">3코스트</button>
+                        <button class="filter-btn" data-cost="4">4코스트</button>
+                        <button class="filter-btn" data-cost="5">5코스트</button>
+                    </div>
+                    <div id="champion-grid" class="champion-grid">
+                        <!-- 모든 챔피언이 코스트별로 나열됨 -->
+                    </div>
+                </section>
+
+                <section class="recommendation-results">
+                    <h2>추천 덱 결과</h2>
+                    <div id="deck-results" class="deck-grid">
+                        <p class="empty-msg">기물을 선택하면 교집합 덱이 추천됩니다.</p>
+                    </div>
+                </section>
+            </main>
+        </div>
     </div>
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>
