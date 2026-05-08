@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             resultContainer.innerHTML = ''; // 로딩 메시지 제거
 
             // 3. 각 매치 상세 정보 가져오기
+            let foundMayhem = false;
             for (const matchId of matchIds) {
                 try {
                     const detailRes = await fetch(`/api/match-detail/${matchId}`);
@@ -50,15 +51,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     if (match.error) continue;
                     
-                    // 일단 모든 전적을 보여주도록 필터 해제 (디버깅용)
-                    renderMatch(match, puuid);
+                    // 아수라장(ARAM Mayhem) Queue ID: 1700, 1710 등을 필터링
+                    // 라이엇 문서에 따라 변동될 수 있어 gameMode와 queueId를 함께 체크
+                    const isMayhem = match.info.queueId === 1700 || 
+                                     match.info.queueId === 1710 || 
+                                     match.info.gameMode === 'MAYHEM' ||
+                                     (match.info.gameMode === 'ARAM' && match.info.gameType === 'EVENT_GAME');
+
+                    if (isMayhem) {
+                        renderMatch(match, puuid);
+                        foundMayhem = true;
+                    }
                 } catch (e) {
                     console.error('Match error:', e);
                 }
             }
 
-            if (resultContainer.innerHTML === '') {
-                resultContainer.innerHTML = '<div class="placeholder">표시할 전적이 없습니다.</div>';
+            if (!foundMayhem) {
+                resultContainer.innerHTML = '<div class="placeholder">최근 20경기 중 "아수라장" 전적이 없습니다. 일반 칼바람과는 구분되어 표시됩니다.</div>';
             }
 
         } catch (error) {
@@ -74,9 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const win = participant.win;
         const kda = `${participant.kills} / ${participant.deaths} / ${participant.assists}`;
         const championName = participant.championName;
-        const gameMode = match.info.gameMode;
         
-        // Data Dragon 이미지 (버전 14.9.1로 업데이트)
+        // 아수라장 특전 마크 (예: 증강 시스템 아이콘 대신 텍스트)
+        const mayhemLabel = '<span class="mayhem-badge">아수라장</span>';
+        
         const champImg = `https://ddragon.leagueoflegends.com/cdn/14.9.1/img/champion/${championName}.png`;
 
         const card = document.createElement('div');
@@ -84,7 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
         card.innerHTML = `
             <img src="${champImg}" alt="${championName}" class="champion-icon" onerror="this.src='https://ddragon.leagueoflegends.com/cdn/14.9.1/img/profileicon/29.png'">
             <div class="match-info">
-                <div class="result-text">${win ? '승리' : '패배'} <span style="font-size: 0.8rem; font-weight: normal; opacity: 0.7;">(${gameMode})</span></div>
+                <div class="result-text">
+                    ${win ? '승리' : '패배'} ${mayhemLabel}
+                </div>
                 <div class="kda">KDA: ${kda}</div>
             </div>
             <div class="game-date">${new Date(match.info.gameCreation).toLocaleDateString()}</div>
